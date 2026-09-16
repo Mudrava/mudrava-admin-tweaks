@@ -5,12 +5,12 @@
  * Provides shared helpers so concrete modules don't repeat boilerplate.
  * Extend this instead of implementing ModuleInterface directly.
  *
- * @package Mudrava\Kit\Core
+ * @package Mudrava\AdminTweaks\Core
  */
 
 declare(strict_types=1);
 
-namespace Mudrava\Kit\Core;
+namespace Mudrava\AdminTweaks\Core;
 
 abstract class AbstractModule implements ModuleInterface {
 
@@ -18,7 +18,7 @@ abstract class AbstractModule implements ModuleInterface {
 	private ?array $optionsCache = null;
 
 	/* ------------------------------------------------------------------
-	 * Default metadata — delegates to manifest() to avoid duplication.
+	 * Default metadata - delegates to manifest() to avoid duplication.
 	 * Subclasses MUST implement manifest().
 	 * ----------------------------------------------------------------*/
 
@@ -225,6 +225,23 @@ abstract class AbstractModule implements ModuleInterface {
 	}
 
 	/**
+	 * Asset cache-buster based on the current file modification time.
+	 *
+	 * @param string $relativePath Path relative to the plugin root directory.
+	 */
+	protected function assetVersion( string $relativePath ): string {
+		$file = trailingslashit( wp_normalize_path( MUDRAVA_MT_DIR ) ) . ltrim( wp_normalize_path( $relativePath ), '/' );
+
+		if ( ! is_readable( $file ) ) {
+			return MUDRAVA_MT_VERSION;
+		}
+
+		$mtime = filemtime( $file );
+
+		return $mtime !== false ? (string) $mtime : MUDRAVA_MT_VERSION;
+	}
+
+	/**
 	 * Enqueue a module-specific stylesheet.
 	 *
 	 * Files are expected in `<ModuleDir>/assets/<filename>`.
@@ -234,11 +251,20 @@ abstract class AbstractModule implements ModuleInterface {
 	 * @param array<string> $deps     Dependency handles.
 	 */
 	protected function enqueueStyle( string $handle, string $filename, array $deps = [] ): void {
+		$relative = ltrim(
+			str_replace(
+				wp_normalize_path( MUDRAVA_MT_DIR ),
+				'',
+				wp_normalize_path( $this->dir() )
+			),
+			'/'
+		);
+
 		wp_enqueue_style(
 			'mudrava-mt-' . $handle,
 			$this->moduleUrl() . 'assets/' . $filename,
 			$deps,
-			MUDRAVA_MT_VERSION,
+			$this->assetVersion( $relative . '/assets/' . $filename ),
 		);
 	}
 
@@ -253,17 +279,26 @@ abstract class AbstractModule implements ModuleInterface {
 	 * @param bool          $inFooter Whether to load in footer.
 	 */
 	protected function enqueueScript( string $handle, string $filename, array $deps = [], bool $inFooter = true ): void {
+		$relative = ltrim(
+			str_replace(
+				wp_normalize_path( MUDRAVA_MT_DIR ),
+				'',
+				wp_normalize_path( $this->dir() )
+			),
+			'/'
+		);
+
 		wp_enqueue_script(
 			'mudrava-mt-' . $handle,
 			$this->moduleUrl() . 'assets/' . $filename,
 			$deps,
-			MUDRAVA_MT_VERSION,
+			$this->assetVersion( $relative . '/assets/' . $filename ),
 			$inFooter,
 		);
 	}
 
 	/**
-	 * Register a submenu page under the MUDRAVA Kit menu.
+	 * Register a submenu page under the MUDRAVA menu.
 	 *
 	 * If the module is marked as "standalone" (via `mudrava_mt_standalone_menus`
 	 * option), it will be registered as a top-level admin menu item instead.
@@ -282,8 +317,8 @@ abstract class AbstractModule implements ModuleInterface {
 		$fullSlug = 'mudrava-mt-' . $slug;
 
 		/*
-		 * Standalone build (no Kit hub present): register a dedicated
-		 * top-level menu and stop — there is no hub parent to attach to.
+		 * Standalone build (no host plugin present): register a dedicated
+		 * top-level menu and stop - there is no hub parent to attach to.
 		 */
 		if ( ! class_exists( ModuleRegistry::class ) ) {
 			$manifest = $this->manifest();
@@ -316,7 +351,7 @@ abstract class AbstractModule implements ModuleInterface {
 			);
 		}
 
-		// Always register as submenu too — WordPress needs it for the parent link.
+		// Always register as submenu too - WordPress needs it for the parent link.
 		add_submenu_page(
 			'mudrava-admin-tweaks',
 			$title,

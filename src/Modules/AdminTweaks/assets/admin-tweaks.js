@@ -1,15 +1,15 @@
 /**
- * Admin Tweaks — module JavaScript.
+ * Admin Tweaks - module JavaScript.
  *
  * Handles: live search with highlight, per-tab AJAX save,
  * media pickers, force-logout, test-email.
  *
- * @package Mudrava\Kit\Modules\AdminTweaks
+ * @package Mudrava\AdminTweaks\Modules\AdminTweaks
  */
 ( function () {
 	'use strict';
 
-	const cfg = () => window.mudravaAdminTweaksAdmin || window.mudravaKitAdmin || window.mdkitAdmin || {};
+	const cfg = () => window.mudravaAdminTweaksAdmin || window.mdkitAdmin || {};
 
 	/* ==============================================================
 	   Live Search

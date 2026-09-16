@@ -1,10 +1,10 @@
 /**
- * MUDRAVA Kit — Admin Stylesheet
+ * MUDRAVA - Admin Stylesheet
  *
  * All classes prefixed with .mdkit- for isolation.
  * Uses CSS custom properties for consistent theming.
  *
- * @package Mudrava\Kit
+ * @package Mudrava\AdminTweaks
  */
 
 /* ==================================================================
@@ -87,7 +87,7 @@
 	font-size: 1.7rem;
 }
 
-/* WP core moves .notice/.settings-error into the first .wrap h1 parent —
+/* WP core moves .notice/.settings-error into the first .wrap h1 parent -
    force them onto their own row inside the flex container. */
 .mdkit-page-header__title-row .notice,
 .mdkit-page-header__title-row .settings-error,
@@ -330,7 +330,7 @@
 }
 
 /* ==================================================================
-   Module Card — Standalone Menu Toggle
+   Module Card - Standalone Menu Toggle
    ================================================================== */
 
 .mdkit-standalone-toggle {
@@ -370,7 +370,7 @@
 }
 
 /* ==================================================================
-   Module Card — Title Row (name + star)
+   Module Card - Title Row (name + star)
    ================================================================== */
 
 .mdkit-module-card__title-row {
@@ -384,7 +384,7 @@
 }
 
 /* ==================================================================
-   Module Card — Favorite Star
+   Module Card - Favorite Star
    ================================================================== */
 
 .mdkit-module-card__fav {
@@ -418,7 +418,7 @@
 }
 
 /* ==================================================================
-   Module Card — Tags
+   Module Card - Tags
    ================================================================== */
 
 .mdkit-module-card__tags {
@@ -442,7 +442,7 @@
 }
 
 /* ==================================================================
-   Module Card — Features Spoiler
+   Module Card - Features Spoiler
    ================================================================== */
 
 .mdkit-module-card__features {
@@ -2235,7 +2235,7 @@ mark.mdkit-hl {
 }
 
 /* ==================================================================
-   Button — ghost variant
+   Button - ghost variant
    ================================================================== */
 
 .mdkit-btn--ghost {

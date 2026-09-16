@@ -6,15 +6,15 @@
  * tweaks: branding, column helpers, media controls, security
  * hardening, notification management and general cleanup.
  *
- * @package Mudrava\Kit\Modules\AdminTweaks
+ * @package Mudrava\AdminTweaks\Modules\AdminTweaks
  */
 
 declare( strict_types=1 );
 
-namespace Mudrava\Kit\Modules\AdminTweaks;
+namespace Mudrava\AdminTweaks\Modules\AdminTweaks;
 
-use Mudrava\Kit\Core\AbstractModule;
-use Mudrava\Kit\Core\AdminUI;
+use Mudrava\AdminTweaks\Core\AbstractModule;
+use Mudrava\AdminTweaks\Core\AdminUI;
 
 final class AdminTweaks extends AbstractModule {
 
@@ -134,7 +134,7 @@ final class AdminTweaks extends AbstractModule {
 			/*
 			 * Core passes contexts like 'capability_edit_themes' through
 			 * wp_is_file_mod_allowed(), so context matching is fragile.
-			 * Strip the primitive caps outright — same mechanism core
+			 * Strip the primitive caps outright - same mechanism core
 			 * uses when DISALLOW_FILE_EDIT is defined. Editor pages
 			 * (plugin/theme/file) gate on these caps and die; menu items
 			 * registered with them disappear.
@@ -236,14 +236,14 @@ final class AdminTweaks extends AbstractModule {
 			'mudrava-mt-admin',
 			MUDRAVA_MT_URL . 'assets/css/admin.css',
 			[],
-			MUDRAVA_MT_VERSION,
+			$this->assetVersion( 'assets/css/admin.css' ),
 		);
 
 		wp_enqueue_script(
 			'mudrava-mt-admin',
 			MUDRAVA_MT_URL . 'assets/js/admin.js',
 			[],
-			MUDRAVA_MT_VERSION,
+			$this->assetVersion( 'assets/js/admin.js' ),
 			true,
 		);
 
@@ -475,7 +475,7 @@ final class AdminTweaks extends AbstractModule {
 		);
 		$body = sprintf(
 			/* translators: %1$s site name, %2$s timestamp */
-			__( "This is a test email sent from %1\$s.\n\nTimestamp: %2\$s\nSent by: Admin Tweaks module (MUDRAVA Kit)", 'mudrava-admin-tweaks' ),
+			__( "This is a test email sent from %1\$s.\n\nTimestamp: %2\$s\nSent by: MUDRAVA Admin Tweaks", 'mudrava-admin-tweaks' ),
 			$siteName,
 			current_time( 'Y-m-d H:i:s' ),
 		);
@@ -498,7 +498,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * GENERAL TAB — hook methods
+	 * GENERAL TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -536,7 +536,7 @@ final class AdminTweaks extends AbstractModule {
 	/**
 	 * Enqueue the profile-page script that unlocks the username field.
 	 *
-	 * Only for administrators — the server-side handler rejects the
+	 * Only for administrators - the server-side handler rejects the
 	 * change for anyone else, so unlocking the field for them would
 	 * just be confusing UX.
 	 */
@@ -610,7 +610,7 @@ final class AdminTweaks extends AbstractModule {
 	 * Redirect users to a custom URL after login.
 	 *
 	 * wp-login validates the target with wp_safe_redirect(), which
-	 * rewrites any off-site URL back to home — register the configured
+	 * rewrites any off-site URL back to home - register the configured
 	 * host in allowed_redirect_hosts so "any URL" actually works.
 	 */
 	private function setupLoginRedirect( string $url ): void {
@@ -648,7 +648,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * BRANDING TAB — hook methods
+	 * BRANDING TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -719,7 +719,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * COLUMNS TAB — hook methods
+	 * COLUMNS TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -816,7 +816,7 @@ final class AdminTweaks extends AbstractModule {
 			add_action( "manage_{$type}_posts_custom_column", static function ( string $col, int $postId ): void {
 				if ( $col === 'mdkit_thumb' ) {
 					$thumb = get_the_post_thumbnail( $postId, [ 40, 40 ], [ 'style' => 'border-radius:4px;' ] );
-					echo $thumb !== '' ? wp_kses_post( $thumb ) : '—';
+					echo $thumb !== '' ? wp_kses_post( $thumb ) : '-';
 				}
 			}, 10, 2 );
 		}
@@ -836,7 +836,7 @@ final class AdminTweaks extends AbstractModule {
 				add_action( "manage_{$type}_posts_custom_column", static function ( string $col, int $postId ): void {
 					if ( $col === 'mdkit_modified' ) {
 						$post = get_post( $postId );
-						echo $post ? esc_html( get_the_modified_date( 'Y/m/d', $post ) ) : '—';
+						echo $post ? esc_html( get_the_modified_date( 'Y/m/d', $post ) ) : '-';
 					}
 				}, 10, 2 );
 
@@ -854,7 +854,7 @@ final class AdminTweaks extends AbstractModule {
 			add_action( 'manage_media_custom_column', static function ( string $col, int $postId ): void {
 				if ( $col === 'mdkit_modified' ) {
 					$post = get_post( $postId );
-					echo $post ? esc_html( get_the_modified_date( 'Y/m/d', $post ) ) : '—';
+					echo $post ? esc_html( get_the_modified_date( 'Y/m/d', $post ) ) : '-';
 				}
 			}, 10, 2 );
 			add_filter( 'manage_upload_sortable_columns', static function ( array $cols ): array {
@@ -865,7 +865,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * MEDIA TAB — hook methods
+	 * MEDIA TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -906,7 +906,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * SECURITY TAB — hook methods
+	 * SECURITY TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -916,15 +916,37 @@ final class AdminTweaks extends AbstractModule {
 		remove_action( 'wp_head', 'wp_generator' );
 		add_filter( 'the_generator', '__return_empty_string' );
 
-		$stripVer = static function ( string $src ): string {
-			if ( str_contains( $src, 'ver=' ) ) {
+		$pluginUrl = MUDRAVA_MT_URL;
+
+		$stripVer = static function ( string $src ) use ( $pluginUrl ): string {
+			if ( ! str_contains( $src, 'ver=' ) ) {
+				return $src;
+			}
+
+			if ( str_contains( $src, $pluginUrl ) ) {
+				return $src;
+			}
+
+			$query = [];
+			wp_parse_str( (string) wp_parse_url( $src, PHP_URL_QUERY ), $query );
+
+			if ( ! isset( $query['ver'] ) ) {
+				return $src;
+			}
+
+			$wpVersion = $GLOBALS['wp_version'] ?? '';
+
+			if ( $query['ver'] === '' || $query['ver'] === $wpVersion ) {
 				return remove_query_arg( 'ver', $src );
 			}
+
 			return $src;
 		};
 
 		add_filter( 'style_loader_src', $stripVer, 999 );
 		add_filter( 'script_loader_src', $stripVer, 999 );
+
+		add_filter( 'update_footer', '__return_empty_string', 100 );
 	}
 
 	/**
@@ -962,7 +984,7 @@ final class AdminTweaks extends AbstractModule {
 	 * Disable /?s= search on the frontend.
 	 *
 	 * Uses 302 (not 301) so the redirect is not cached permanently by
-	 * browsers/search engines — the tweak must stay reversible.
+	 * browsers/search engines - the tweak must stay reversible.
 	 */
 	private function disableFrontendSearch(): void {
 		add_action( 'parse_query', static function ( \WP_Query $query ): void {
@@ -974,7 +996,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * NOTIFICATIONS TAB — hook methods
+	 * NOTIFICATIONS TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -982,7 +1004,7 @@ final class AdminTweaks extends AbstractModule {
 	 *
 	 * Core hooks the check as array( $instance, 'wp_cron_scheduled_check' )
 	 * and builds the instance on `init` (priority 10), so both the action
-	 * detach and the cron clear must run AFTER that — on a cron request,
+	 * detach and the cron clear must run AFTER that - on a cron request,
 	 * not only after an admin page load.
 	 */
 	private function disableSiteHealthEmails(): void {
@@ -1043,7 +1065,7 @@ final class AdminTweaks extends AbstractModule {
 	}
 
 	/* ==================================================================
-	 * CLEANUP TAB — hook methods
+	 * CLEANUP TAB - hook methods
 	 * ================================================================*/
 
 	/**
@@ -1062,7 +1084,7 @@ final class AdminTweaks extends AbstractModule {
 
 			/*
 			 * Age is measured from the moment an item was TRASHED
-			 * (_wp_trash_meta_time), not from creation/modification —
+			 * (_wp_trash_meta_time), not from creation/modification -
 			 * same source core uses in wp_scheduled_delete(). Using
 			 * comment_date_gmt/post_modified_gmt would force-delete
 			 * freshly trashed items that merely have an old date.

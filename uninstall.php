@@ -1,10 +1,10 @@
 <?php
 /**
- * Uninstall handler — removes all data stored by the plugin.
+ * Uninstall handler - removes all data stored by the plugin.
  *
  * Runs only when the plugin is deleted from the Plugins screen.
  *
- * @package Mudrava\Kit
+ * @package Mudrava\AdminTweaks
  */
 
 declare(strict_types=1);

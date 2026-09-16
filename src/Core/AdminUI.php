@@ -8,12 +8,12 @@
  *
  * All output is already escaped. Methods return HTML strings.
  *
- * @package Mudrava\Kit\Core
+ * @package Mudrava\AdminTweaks\Core
  */
 
 declare(strict_types=1);
 
-namespace Mudrava\Kit\Core;
+namespace Mudrava\AdminTweaks\Core;
 
 final class AdminUI {
 
@@ -215,7 +215,7 @@ final class AdminUI {
 	 * ----------------------------------------------------------------*/
 
 	/**
-	 * Page wrapper — opens the standard page container.
+	 * Page wrapper - opens the standard page container.
 	 *
 	 * @param string               $title       Page title.
 	 * @param string               $description Optional subtitle / description.
@@ -253,7 +253,6 @@ final class AdminUI {
 				'<path d="M435.247 17.952H436.879L444.463 44.256L433.423 84H414.223L435.247 17.952ZM456.847 72.288H440.815L444.847 57.504H452.527L441.199 17.952H458.767L479.791 84H460.207L456.847 72.288Z" fill="white"/>' .
 				'</svg>';
 			$html .= '</a>';
-			$html .= ' Kit';
 		} else {
 			$html .= esc_html( $title );
 		}
@@ -295,6 +294,8 @@ final class AdminUI {
 		$html .= '</div>';
 		$html .= '<div class="mdkit-footer__info">';
 		$html .= '<span class="mdkit-footer__copy">&copy; ' . esc_html( $year ) . ' MUDRAVA. All rights reserved.</span>';
+		$html .= '<span class="mdkit-footer__sep">&middot;</span>';
+		$html .= '<a class="mdkit-footer__link" href="https://wordpress.org/plugins/mudrava-admin-tweaks/" target="_blank" rel="noopener">WordPress.org</a>';
 		$html .= '<span class="mdkit-footer__sep">&middot;</span>';
 		$html .= '<a class="mdkit-footer__link" href="https://mudrava.com/en/" target="_blank" rel="noopener">mudrava.com</a>';
 		$html .= '<span class="mdkit-footer__sep">&middot;</span>';
@@ -858,7 +859,7 @@ final class AdminUI {
 		}
 		$html .= '</tr></thead>';
 
-		// <tbody> — populated via AJAX
+		// <tbody> - populated via AJAX
 		$html .= '<tbody class="mdkit-data-table__body">';
 		$html .= '<tr><td colspan="' . count( $columns ) . '" class="mdkit-data-table__loading">';
 		$html .= self::preloader();

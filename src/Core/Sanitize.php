@@ -4,12 +4,12 @@
  *
  * Thin wrappers around WordPress sanitize functions with strict types.
  *
- * @package Mudrava\Kit\Core
+ * @package Mudrava\AdminTweaks\Core
  */
 
 declare(strict_types=1);
 
-namespace Mudrava\Kit\Core;
+namespace Mudrava\AdminTweaks\Core;
 
 final class Sanitize {
 

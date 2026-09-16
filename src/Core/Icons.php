@@ -5,12 +5,12 @@
  * Ships a curated set of Lucide SVG icons as inline strings.
  * Zero HTTP requests, full CSS control via `currentColor`.
  *
- * @package Mudrava\Kit\Core
+ * @package Mudrava\AdminTweaks\Core
  */
 
 declare(strict_types=1);
 
-namespace Mudrava\Kit\Core;
+namespace Mudrava\AdminTweaks\Core;
 
 final class Icons {
 

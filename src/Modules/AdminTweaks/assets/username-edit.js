@@ -1,7 +1,7 @@
 /**
  * Enable username editing on profile screens.
  *
- * @package Mudrava\Kit\Modules\AdminTweaks
+ * @package Mudrava\AdminTweaks\Modules\AdminTweaks
  */
 document.addEventListener( 'DOMContentLoaded', function () {
 	const usernameField = document.getElementById( 'user_login' );

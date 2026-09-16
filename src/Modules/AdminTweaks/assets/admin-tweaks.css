@@ -1,9 +1,9 @@
 /**
- * Admin Tweaks — module stylesheet.
+ * Admin Tweaks - module stylesheet.
  *
  * Search bar, live-search highlight/hide, and layout helpers.
  *
- * @package Mudrava\Kit\Modules\AdminTweaks
+ * @package Mudrava\AdminTweaks\Modules\AdminTweaks
  */
 
 /* ==================================================================
@@ -49,7 +49,7 @@
 }
 
 /* ==================================================================
-   Items — show / hide
+   Items - show / hide
    ================================================================== */
 
 .mdkit-at-item {

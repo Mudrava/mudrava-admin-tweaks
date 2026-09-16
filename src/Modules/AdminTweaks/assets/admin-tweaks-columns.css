@@ -1,17 +1,82 @@
 /**
  * Admin list-table column widths for Admin Tweaks.
  *
- * @package Mudrava\Kit\Modules\AdminTweaks
+ * Keeps custom columns compact while leaving enough room for titles.
+ *
+ * @package Mudrava\AdminTweaks\Modules\AdminTweaks
  */
 
-.column-mdkit_id {
-	width: 60px;
+.wp-admin.edit-php .wp-list-table.fixed,
+.wp-admin.upload-php .wp-list-table.fixed {
+	table-layout: auto;
 }
 
-.column-mdkit_thumb {
-	width: 50px;
+.wp-list-table .column-mdkit_id,
+.wp-list-table .column-mdkit_thumb,
+.wp-list-table .column-mdkit_modified {
+	white-space: nowrap;
 }
 
-.column-mdkit_modified {
-	width: 110px;
+.wp-list-table .column-mdkit_id {
+	min-width: 56px;
+	text-align: center;
+}
+
+.wp-list-table .column-mdkit_id .sortable,
+.wp-list-table .column-mdkit_id a {
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.wp-list-table .column-mdkit_thumb {
+	min-width: 64px;
+	text-align: center;
+}
+
+.wp-list-table .column-mdkit_thumb img {
+	width: 40px;
+	height: 40px;
+	object-fit: cover;
+	vertical-align: middle;
+}
+
+.wp-list-table .column-mdkit_modified {
+	min-width: 120px;
+}
+
+.wp-list-table td.column-mdkit_id {
+	text-align: center;
+}
+
+.wp-list-table .column-title {
+	min-width: 220px;
+}
+
+.wp-admin.post-php .wp-list-table .column-title,
+.wp-admin.upload-php .wp-list-table .column-title,
+.wp-admin.page-title .wp-list-table .column-title {
+	min-width: 280px;
+}
+
+@media screen and (min-width: 1040px) {
+	.wp-list-table .column-title {
+		min-width: 320px;
+	}
+}
+
+.wp-list-table td.column-categories > span[aria-hidden="true"],
+.wp-list-table td.column-tags > span[aria-hidden="true"],
+.wp-list-table td.column-author > span[aria-hidden="true"],
+.wp-list-table td.column-comments .post-com-count-wrapper > span[aria-hidden="true"] {
+	font-size: 0;
+}
+
+.wp-list-table td.column-categories > span[aria-hidden="true"]::before,
+.wp-list-table td.column-tags > span[aria-hidden="true"]::before,
+.wp-list-table td.column-author > span[aria-hidden="true"]::before,
+.wp-list-table td.column-comments .post-com-count-wrapper > span[aria-hidden="true"]::before {
+	content: "-";
+	display: inline-block;
+	font-size: 13px;
+	line-height: 1.4;
 }

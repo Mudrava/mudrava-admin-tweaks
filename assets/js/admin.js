@@ -1,22 +1,22 @@
 /**
- * MUDRAVA Kit — Admin JavaScript
+ * MUDRAVA - Admin JavaScript
  *
- * Vanilla JS — no jQuery dependency.
+ * Vanilla JS - no jQuery dependency.
  * Handles: module toggles (AJAX in-place), tab navigation, hub search,
  * category filter, favorites, confirm dialogs, copy-to-clipboard,
  * alert dismissal, data tables.
  *
- * @package Mudrava\Kit
+ * @package Mudrava\AdminTweaks
  */
 
 ( function () {
 	'use strict';
 
 	/** @type {{ ajaxUrl: string, nonce: string, i18n: Object }} */
-	const config = window.mudravaAdminTweaksAdmin || window.mudravaKitAdmin || window.mdkitAdmin || {};
+	const config = window.mudravaAdminTweaksAdmin || window.mdkitAdmin || {};
 
 	/* ==============================================================
-	   Module Toggle (enable/disable via AJAX — in-place)
+	   Module Toggle (enable/disable via AJAX - in-place)
 	   ============================================================== */
 
 	function initModuleToggles() {
@@ -995,7 +995,7 @@
 						if ( infoEl ) {
 							const from = total === 0 ? 0 : ( ( currentPage - 1 ) * perPage ) + 1;
 							const to   = Math.min( currentPage * perPage, total );
-							infoEl.textContent = from + '–' + to + ' / ' + total;
+							infoEl.textContent = from + '-' + to + ' / ' + total;
 						}
 
 						// Render pagination.
@@ -1020,7 +1020,7 @@
 				prev.addEventListener( 'click', () => { currentPage--; loadData(); } );
 				pagesEl.appendChild( prev );
 
-				// Page numbers — show max 7 with ellipsis.
+				// Page numbers - show max 7 with ellipsis.
 				const pages = paginate( currentPage, totalPages );
 				pages.forEach( ( p ) => {
 					if ( p === '…' ) {
@@ -1082,7 +1082,7 @@
 				} );
 			} );
 
-			// Search — debounced.
+			// Search - debounced.
 			if ( searchEl ) {
 				searchEl.addEventListener( 'input', () => {
 					clearTimeout( debounceTimer );

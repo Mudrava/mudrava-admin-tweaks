@@ -3,18 +3,36 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.2] - 2026-09-16
+
+### Fixed
+- Admin list-table columns no longer collapse the title column. Widths are now declared as `min-width`
+  on cells with an auto table layout (core's `.fixed` layout ignored `min-width`), so ID / thumbnail /
+  modified columns keep their size at every breakpoint and long titles wrap instead of being crushed.
+- "Hide WordPress version" no longer strips cache-busting query strings from the plugin's own CSS and JS.
+  The version-stripping filter now only removes the WordPress core version string; plugin assets are
+  versioned by file mtime (`assetVersion()`), so style/script updates apply immediately.
+- The WordPress version string in the admin footer is removed on recent WordPress versions: core renders
+  it through the `update_footer` filter, which is now filtered to an empty string.
+
+### Changed
+- Core em-dash placeholders in empty list-table cells (author, categories, tags, comments) render as a
+  plain hyphen, matching the plugin's typographic convention.
+- Documentation: `README.md` restructured (badges, banner, feature tables, screenshot index),
+  `readme.txt` changelog and stable tag updated, screenshots refreshed with real demo data.
+
 ## [1.1.1] - 2026-09-16
 
 ### Fixed
 - "Disable file editor" now actually works: core passes contexts like `capability_edit_themes` through
   `wp_is_file_mod_allowed()`, so the old context whitelist never matched. Plugin/theme/file-editor primitive
-  caps are now stripped via `user_has_cap` — the same mechanism core uses for `DISALLOW_FILE_EDIT`.
+  caps are now stripped via `user_has_cap` - the same mechanism core uses for `DISALLOW_FILE_EDIT`.
 - Trash auto-delete no longer force-deletes freshly trashed items that merely have an old creation date:
   age is now measured from the `_wp_trash_meta_time` meta (matching core's `wp_scheduled_delete()`).
   Full 200-item batches now re-queue so large backlogs actually drain.
 - Site Health notification email suppression was a no-op (core hooks the instance method
   `wp_cron_scheduled_check`). The action is now detached and the cron cleared on `init` (priority 20),
-  which covers cron requests too — not just admin page loads.
+  which covers cron requests too - not just admin page loads.
 - Login/logout redirect tweaks now work with off-site URLs: the configured host is registered via
   `allowed_redirect_hosts` (previously `wp_safe_redirect()` silently rewrote external URLs to home).
   Logout redirect moved from an `exit` inside `wp_logout` to the core `logout_redirect` filter, so the
@@ -35,12 +53,12 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Shipped `languages/mudrava-admin-tweaks.pot` (152 strings) to back the i18n claims and GlotPress.
 - Remaining AJAX strings (`Forbidden`, `Invalid tab.`) translated; unused `Sanitize` import removed;
   readme tags switched to canonical WordPress.org slugs and copy synced with actual behavior.
-- `tools/build-zip.sh` added — produces a clean wp.org release zip from the tree.
+- `tools/build-zip.sh` added - produces a clean wp.org release zip from the tree.
 
 ## [1.1.0] - 2026-09-16
 
 ### Fixed
-- Standalone build: base stylesheet/script and AJAX config (`ajaxUrl`, nonce) are now correctly registered via `admin_enqueue_scripts` and localized — save / force-logout / test-email work end-to-end.
+- Standalone build: base stylesheet/script and AJAX config (`ajaxUrl`, nonce) are now correctly registered via `admin_enqueue_scripts` and localized - save / force-logout / test-email work end-to-end.
 - Single admin menu entry on standalone installs (removed duplicate/orphaned menu registration).
 - ID column now renders in the Media Library list table (`manage_upload_columns`).
 - Site Health email suppression no longer depends on an admin page load (`remove_action` instead of cron-only cleanup).
@@ -51,7 +69,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - readme: archive-prefix FAQ now correctly describes title-prefix behavior.
 
 ### Added
-- `uninstall.php` — deleting the plugin removes all stored options.
+- `uninstall.php` - deleting the plugin removes all stored options.
 - `load_plugin_textdomain()` + `languages/*.pot` scaffolding.
 - Translatable manifest feature strings.
 
@@ -70,7 +88,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.0.1]
 
-- Fixed companion loading when the full MUDRAVA Kit plugin is active.
+- Fixed companion loading when the full MUDRAVA plugin is active.
 - Updated WordPress.org screenshots.
 
 ## [1.0.0]

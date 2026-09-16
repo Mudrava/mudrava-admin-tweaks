@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name:       MUDRAVA Admin Tweaks
- * Plugin URI:        https://mudrava.com/en/
+ * Plugin URI:        https://wordpress.org/plugins/mudrava-admin-tweaks/
  * Description:       A collection of handy admin-area tweaks: branding, columns, media, security, notifications and cleanup.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            MUDRAVA
@@ -13,9 +13,9 @@
  * Text Domain:       mudrava-admin-tweaks
  * Domain Path:       /languages
  *
- * Standalone module extracted from MUDRAVA Kit.
+ * Standalone WordPress admin tweaks plugin.
  *
- * @package Mudrava\Kit
+ * @package Mudrava\AdminTweaks
  */
 
 declare(strict_types=1);
@@ -24,42 +24,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$mudravaMtIsPluginActive = static function ( string $pluginFile ): bool {
-	$active = get_option( 'active_plugins', [] );
-
-	if ( is_array( $active ) && in_array( $pluginFile, $active, true ) ) {
-		return true;
-	}
-
-	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-		$networkActive = get_site_option( 'active_sitewide_plugins', [] );
-
-		return is_array( $networkActive ) && isset( $networkActive[ $pluginFile ] );
-	}
-
-	return false;
-};
-
 /*
- * Guard: if the full MUDRAVA Kit is active, skip this standalone loader.
- * The hub already registers and boots this module.
+ * Prevent double loading if another copy already defined these constants.
  */
-if ( defined( 'MUDRAVA_MT_VERSION' ) || $mudravaMtIsPluginActive( 'mudrava-kit/mudrava-kit.php' ) ) {
-	add_action( 'admin_notices', static function (): void {
-		printf(
-			'<div class="notice notice-warning"><p>%s</p></div>',
-			esc_html__( 'MUDRAVA Admin Tweaks is already included in MUDRAVA Kit. You can deactivate this standalone plugin.', 'mudrava-admin-tweaks' )
-		);
-	} );
+if ( defined( 'MUDRAVA_MT_VERSION' ) ) {
 	return;
 }
 
-unset( $mudravaMtIsPluginActive );
-
 /*
- * Define hub-compatible constants so Core classes work unchanged.
+ * Define standalone constants used by Core classes and assets.
  */
-define( 'MUDRAVA_MT_VERSION',  '1.1.1' );
+define( 'MUDRAVA_MT_VERSION',  '1.1.2' );
 define( 'MUDRAVA_MT_FILE',     __FILE__ );
 define( 'MUDRAVA_MT_DIR',      plugin_dir_path( __FILE__ ) );
 define( 'MUDRAVA_MT_URL',      plugin_dir_url( __FILE__ ) );
@@ -82,7 +57,7 @@ if ( PHP_VERSION_ID < 80200 ) {
  * PSR-4 autoloader for the bundled Core + Module classes.
  */
 spl_autoload_register( static function ( string $class ): void {
-	$prefix = 'Mudrava\\Kit\\';
+	$prefix = 'Mudrava\\AdminTweaks\\';
 
 	if ( ! str_starts_with( $class, $prefix ) ) {
 		return;
@@ -107,7 +82,7 @@ add_action( 'init', static function (): void {
 		dirname( MUDRAVA_MT_BASENAME ) . '/languages'
 	);
 
-	$module = new \Mudrava\Kit\Modules\AdminTweaks\AdminTweaks();
+	$module = new \Mudrava\AdminTweaks\Modules\AdminTweaks\AdminTweaks();
 	$module->boot();
 }, 1 );
 
@@ -115,11 +90,11 @@ add_action( 'init', static function (): void {
  * Activation / deactivation hooks.
  */
 register_activation_hook( __FILE__, static function (): void {
-	$module = new \Mudrava\Kit\Modules\AdminTweaks\AdminTweaks();
+	$module = new \Mudrava\AdminTweaks\Modules\AdminTweaks\AdminTweaks();
 	$module->activate();
 } );
 
 register_deactivation_hook( __FILE__, static function (): void {
-	$module = new \Mudrava\Kit\Modules\AdminTweaks\AdminTweaks();
+	$module = new \Mudrava\AdminTweaks\Modules\AdminTweaks\AdminTweaks();
 	$module->deactivate();
 } );

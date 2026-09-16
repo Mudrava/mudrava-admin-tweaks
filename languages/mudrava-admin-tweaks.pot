@@ -2,7 +2,7 @@
 # This file is distributed under the GPL-2.0-or-later license.
 msgid ""
 msgstr ""
-"Project-Id-Version: MUDRAVA Admin Tweaks 1.1.1\n"
+"Project-Id-Version: MUDRAVA Admin Tweaks 1.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/mudrava-admin-tweaks/\n"
 "POT-Creation-Date: 2026-09-16 14:45+0000\n"
 "MIME-Version: 1.0\n"
@@ -332,11 +332,7 @@ msgstr ""
 msgid "Logo link URL"
 msgstr ""
 
-#: mudrava-admin-tweaks.php:51
-msgid "MUDRAVA Admin Tweaks is already included in MUDRAVA Kit. You can deactivate this standalone plugin."
-msgstr ""
-
-#: mudrava-admin-tweaks.php:75
+#: mudrava-admin-tweaks.php:50
 msgid "MUDRAVA Admin Tweaks requires PHP 8.2 or higher."
 msgstr ""
 
@@ -572,7 +568,7 @@ msgstr ""
 msgid "Test Email"
 msgstr ""
 
-#: src/Modules/AdminTweaks/AdminTweaks.php:490
+#: src/Modules/AdminTweaks/AdminTweaks.php:489
 msgid "Test email sent successfully to %s."
 msgstr ""
 
@@ -580,8 +576,8 @@ msgstr ""
 msgid "The admin bar \"Visit Site\" link will open the front-end in a new browser tab."
 msgstr ""
 
-#: src/Modules/AdminTweaks/AdminTweaks.php:479
-msgid "This is a test email sent from %1\\$s.\\n\\nTimestamp: %2\\$s\\nSent by: Admin Tweaks module (MUDRAVA Kit)"
+#: src/Modules/AdminTweaks/AdminTweaks.php:478
+msgid "This is a test email sent from %1\\$s.\\n\\nTimestamp: %2\\$s\\nSent by: MUDRAVA Admin Tweaks"
 msgstr ""
 
 #: src/Modules/AdminTweaks/views/settings.php:431

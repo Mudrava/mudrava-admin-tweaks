@@ -8,22 +8,22 @@
  *   src/Modules/{DirName}/{DirName}.php
  *
  * where the main class implements ModuleInterface. Module availability
- * is determined solely by folder presence — NO hardcoded references.
+ * is determined solely by folder presence - NO hardcoded references.
  *
  * Discovery reads static manifest() metadata from each module class
  * WITHOUT instantiation. No hooks are registered until boot() is
  * called on enabled modules.
  *
- * @package Mudrava\Kit\Core
+ * @package Mudrava\AdminTweaks\Core
  */
 
 declare(strict_types=1);
 
-namespace Mudrava\Kit\Core;
+namespace Mudrava\AdminTweaks\Core;
 
 final class ModuleManifest {
 
-	private const NAMESPACE_PREFIX = 'Mudrava\\Kit\\Modules\\';
+	private const NAMESPACE_PREFIX = 'Mudrava\\AdminTweaks\\Modules\\';
 
 	/**
 	 * Per-request cache of discovered modules.
@@ -103,7 +103,7 @@ final class ModuleManifest {
 					'requires'    => $meta['requires'],
 				];
 			} catch ( \Throwable $e ) {
-				// Skip broken modules — best effort discovery.
+				// Skip broken modules - best effort discovery.
 			}
 		}
 

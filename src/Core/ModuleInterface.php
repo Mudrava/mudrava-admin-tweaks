@@ -4,12 +4,12 @@
  *
  * Every module MUST implement this interface.
  *
- * @package Mudrava\Kit\Core
+ * @package Mudrava\AdminTweaks\Core
  */
 
 declare(strict_types=1);
 
-namespace Mudrava\Kit\Core;
+namespace Mudrava\AdminTweaks\Core;
 
 interface ModuleInterface {
 
@@ -67,7 +67,7 @@ interface ModuleInterface {
 	 * Register WordPress hooks.
 	 *
 	 * Called ONLY for enabled modules during `init` (priority 0).
-	 * Disabled modules never reach this method — their files are not
+	 * Disabled modules never reach this method - their files are not
 	 * even autoloaded.
 	 */
 	public function boot(): void;

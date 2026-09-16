@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin Tweaks — settings view.
+ * Admin Tweaks - settings view.
  *
  * Renders all 7 tabs with a live-search bar.
  *
@@ -10,8 +10,8 @@
 
 defined( 'ABSPATH' ) || exit;
 
-use Mudrava\Kit\Core\AdminUI;
-use Mudrava\Kit\Core\Icons;
+use Mudrava\AdminTweaks\Core\AdminUI;
+use Mudrava\AdminTweaks\Core\Icons;
 
 (static function ( array $mudrava_admin_tweaks_options = [], array $mudrava_admin_tweaks_post_types = [] ): void {
 
