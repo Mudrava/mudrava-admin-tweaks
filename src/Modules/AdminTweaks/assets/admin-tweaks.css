@@ -1,0 +1,147 @@
+/**
+ * Admin Tweaks — module stylesheet.
+ *
+ * Search bar, live-search highlight/hide, and layout helpers.
+ *
+ * @package Mudrava\Kit\Modules\AdminTweaks
+ */
+
+/* ==================================================================
+   Search Bar
+   ================================================================== */
+
+.mdkit-at-search-wrap {
+	position: relative;
+	margin-bottom: var(--mdkit-spacing-md);
+}
+
+.mdkit-at-search-wrap input {
+    padding-left: 33px;
+}
+
+.mdkit-at-search-icon {
+	position: absolute;
+	left: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--mdkit-color-text-tertiary);
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+}
+
+.mdkit-at-search {
+	width: 100%;
+	padding: 10px 14px 10px 44px;
+	font-size: var(--mdkit-font-size-lg);
+	border: 1px solid var(--mdkit-color-border);
+	border-radius: var(--mdkit-radius-lg);
+	background: var(--mdkit-color-bg);
+	box-shadow: var(--mdkit-shadow);
+	transition: border-color var(--mdkit-transition), box-shadow var(--mdkit-transition);
+	box-sizing: border-box;
+}
+
+.mdkit-at-search:focus {
+	border-color: var(--mdkit-color-primary);
+	box-shadow: 0 0 0 2px var(--mdkit-color-primary-light);
+	outline: none;
+}
+
+/* ==================================================================
+   Items — show / hide
+   ================================================================== */
+
+.mdkit-at-item {
+	margin-bottom: var(--mdkit-spacing-md);
+	padding-bottom: var(--mdkit-spacing-md);
+	border-bottom: 1px solid var(--mdkit-color-border-light);
+}
+
+.mdkit-at-item:last-child {
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
+}
+
+.mdkit-at-item.mdkit-at-hidden {
+	display: none;
+}
+
+/* ==================================================================
+   Description text inside items
+   ================================================================== */
+
+.mdkit-at-item__desc {
+	margin: 4px 0 0;
+	color: var(--mdkit-color-text-secondary);
+	font-size: var(--mdkit-font-size-sm);
+	line-height: 1.5;
+}
+
+.mdkit-at-actions {
+	margin-top: var(--mdkit-spacing-md);
+}
+
+.mdkit-at-inline-stack {
+	margin-top: 8px;
+}
+
+.mdkit-at-logo-preview {
+	margin: 8px 0;
+}
+
+.mdkit-at-logo-preview-image {
+	display: block;
+	border-radius: 4px;
+	width: auto;
+	max-width: 100%;
+	max-height: 40px;
+}
+
+.mdkit-at-logo-preview-image--admin-bar {
+	max-height: 30px;
+}
+
+.mdkit-at-inline-actions {
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+	flex-wrap: wrap;
+	margin-top: 8px;
+}
+
+.mdkit-at-inline-actions__field {
+	flex: 1;
+	min-width: 220px;
+}
+
+.mdkit-at-inline-actions__button {
+	padding-bottom: 4px;
+}
+
+.mdkit-at-test-result {
+	margin-top: 8px;
+}
+
+/* ==================================================================
+   Search highlight
+   ================================================================== */
+
+mark.mdkit-at-hl {
+	background: var(--mdkit-color-warning-light);
+	color: inherit;
+	padding: 0 2px;
+	border-radius: 2px;
+}
+
+/* ==================================================================
+   No results message
+   ================================================================== */
+
+.mdkit-at-no-results {
+	text-align: center;
+	padding: var(--mdkit-spacing-xl) var(--mdkit-spacing-md);
+	color: var(--mdkit-color-text-tertiary);
+	font-size: var(--mdkit-font-size-lg);
+}

@@ -1,0 +1,17 @@
+/**
+ * Admin list-table column widths for Admin Tweaks.
+ *
+ * @package Mudrava\Kit\Modules\AdminTweaks
+ */
+
+.column-mdkit_id {
+	width: 60px;
+}
+
+.column-mdkit_thumb {
+	width: 50px;
+}
+
+.column-mdkit_modified {
+	width: 110px;
+}
