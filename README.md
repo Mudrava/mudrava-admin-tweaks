@@ -14,7 +14,7 @@
   <a href="https://wordpress.org/plugins/mudrava-admin-tweaks/"><img src="https://img.shields.io/wordpress/plugin/v/mudrava-admin-tweaks" alt="WordPress plugin version"></a>
   <a href="https://wordpress.org/plugins/mudrava-admin-tweaks/"><img src="https://img.shields.io/wordpress/plugin/dt/mudrava-admin-tweaks" alt="WordPress plugin downloads"></a>
   <a href="https://wordpress.org/plugins/mudrava-admin-tweaks/"><img src="https://img.shields.io/badge/WordPress-6.6%2B-blue?logo=wordpress&logoColor=white" alt="WordPress 6.6+"></a>
-  <img src="https://img.shields.io/badge/Tested%20up%20to-WordPress%207.1-21759B?logo=wordpress&logoColor=white" alt="Tested up to WordPress 7.1">
+  <img src="https://img.shields.io/badge/Tested%20up%20to-WordPress%207.1.1-21759B?logo=wordpress&logoColor=white" alt="Tested up to WordPress 7.1.1">
   <a href="https://www.php.net/"><img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white" alt="PHP 8.2+"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPLv2-green" alt="GPL-2.0-or-later"></a>
   <a href="https://mudrava.com/en/"><img src="https://img.shields.io/badge/by-MUDRAVA-021D69" alt="MUDRAVA"></a>
@@ -97,7 +97,7 @@ Small admin fixes usually mean installing another micro-plugin - for one column,
 ## Requirements
 
 - WordPress 6.6+
-- Tested up to WordPress 7.1
+- Tested up to WordPress 7.1.1
 - PHP 8.2+
 
 ## Installation

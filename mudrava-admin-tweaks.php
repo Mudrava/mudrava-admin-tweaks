@@ -3,7 +3,7 @@
  * Plugin Name:       MUDRAVA Admin Tweaks
  * Plugin URI:        https://wordpress.org/plugins/mudrava-admin-tweaks/
  * Description:       A collection of handy admin-area tweaks: branding, columns, media, security, notifications and cleanup.
- * Version:           1.1.2
+ * Version:           1.1.3
  * Requires at least: 6.6
  * Requires PHP:      8.2
  * Author:            MUDRAVA

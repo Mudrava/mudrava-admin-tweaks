@@ -3,6 +3,12 @@
 All notable changes to this project are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.1.3] - 2026-09-18
+
+### Changed
+- Verified compatibility metadata for WordPress 7.1.1: activation, all admin screens and AJAX endpoints
+  smoke-tested on PHP 8.5. No functional changes.
+
 ## [1.1.2] - 2026-09-16
 
 ### Fixed

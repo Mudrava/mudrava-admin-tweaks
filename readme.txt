@@ -2,9 +2,9 @@
 Contributors: mudrava
 Tags: admin, admin-bar, branding, security, media, dashboard
 Requires at least: 6.6
-Tested up to: 7.1
+Tested up to: 7.1.1
 Requires PHP: 8.2
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -131,6 +131,9 @@ This plugin does not send data to MUDRAVA servers.
 
 If the plugin performs external requests as part of its core feature set, those requests are initiated by site administrators through plugin actions and are described in this readme.
 == Changelog ==
+
+= 1.1.3 =
+* Tested: verified full compatibility with WordPress 7.1.1 - activation, all admin screens and AJAX endpoints smoke-tested on PHP 8.5. No functional changes.
 
 = 1.1.2 =
 * Fixed: admin list-table columns no longer collapse the title column - widths now use min-width with an auto table layout, so the ID / thumbnail / modified columns render correctly on every screen size.
